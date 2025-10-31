@@ -1,36 +1,36 @@
 import { Heart, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const navItems = [
-    { label: "Home", href: "#home" },
-    { label: "Nutrition", href: "#nutrition" },
-    { label: "Fitness", href: "#fitness" },
-    { label: "Mental Health", href: "#mental-health" },
-    { label: "About", href: "#about" },
+    { label: "Home", href: "/" },
+    { label: "Articles", href: "/articles" },
+    { label: "About", href: "/about" },
+    { label: "Contact", href: "/contact" },
   ];
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
-        <a href="#home" className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2">
           <Heart className="h-7 w-7 text-primary fill-primary" />
           <span className="font-display text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
             HealthHub
           </span>
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6">
           {navItems.map((item) => (
-            <a
+            <Link
               key={item.label}
-              href={item.href}
+              to={item.href}
               className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
             >
               {item.label}
-            </a>
+            </Link>
           ))}
           <Button size="sm" className="ml-4">Subscribe</Button>
         </nav>
@@ -45,13 +45,13 @@ const Header = () => {
           <SheetContent>
             <nav className="flex flex-col gap-4 mt-8">
               {navItems.map((item) => (
-                <a
+                <Link
                   key={item.label}
-                  href={item.href}
+                  to={item.href}
                   className="text-lg font-medium text-muted-foreground hover:text-primary transition-colors"
                 >
                   {item.label}
-                </a>
+                </Link>
               ))}
               <Button className="mt-4">Subscribe</Button>
             </nav>

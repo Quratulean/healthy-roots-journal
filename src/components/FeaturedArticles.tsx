@@ -1,6 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Clock, ArrowUpRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import nutritionImage from "@/assets/nutrition-article.jpg";
 import fitnessImage from "@/assets/fitness-article.jpg";
 import mentalHealthImage from "@/assets/mental-health-article.jpg";
@@ -13,6 +14,7 @@ const articles = [
     category: "Nutrition",
     readTime: "5 min read",
     image: nutritionImage,
+    slug: "superfoods-immune-system"
   },
   {
     id: 2,
@@ -21,6 +23,7 @@ const articles = [
     category: "Fitness",
     readTime: "7 min read",
     image: fitnessImage,
+    slug: "sustainable-fitness-routine"
   },
   {
     id: 3,
@@ -29,6 +32,7 @@ const articles = [
     category: "Mental Health",
     readTime: "6 min read",
     image: mentalHealthImage,
+    slug: "mindfulness-meditation-stress"
   },
 ];
 
@@ -47,8 +51,8 @@ const FeaturedArticles = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {articles.map((article) => (
+            <Link key={article.id} to={`/blog/${article.slug}`}>
             <Card 
-              key={article.id} 
               className="overflow-hidden group hover:shadow-lg transition-all duration-300 cursor-pointer border-muted"
             >
               <div className="relative h-48 overflow-hidden">
@@ -80,6 +84,7 @@ const FeaturedArticles = () => {
                 </div>
               </CardContent>
             </Card>
+            </Link>
           ))}
         </div>
       </div>
