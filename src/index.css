@@ -9,39 +9,43 @@ All colors MUST be HSL.
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 210 15% 20%;
+    --foreground: 215 25% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 210 15% 20%;
+    --card-foreground: 215 25% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 210 15% 20%;
+    --popover-foreground: 215 25% 15%;
 
-    --primary: 150 65% 45%;
+    --primary: 210 85% 45%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 180 55% 50%;
+    --secondary: 155 65% 50%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 150 20% 96%;
-    --muted-foreground: 210 15% 50%;
+    --muted: 210 20% 97%;
+    --muted-foreground: 215 15% 45%;
 
-    --accent: 172 60% 45%;
+    --accent: 205 80% 55%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 150 20% 90%;
-    --input: 150 20% 90%;
-    --ring: 150 65% 45%;
+    --border: 210 20% 92%;
+    --input: 210 20% 92%;
+    --ring: 210 85% 45%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
     
-    --gradient-hero: linear-gradient(135deg, hsl(150 65% 45%), hsl(172 60% 45%));
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(150 20% 98%));
-    --shadow-soft: 0 4px 20px -2px hsl(150 30% 40% / 0.1);
-    --shadow-hover: 0 8px 30px -4px hsl(150 30% 40% / 0.15);
+    --gradient-hero: linear-gradient(135deg, hsl(210 85% 45%), hsl(155 65% 50%));
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(210 20% 98%));
+    --gradient-subtle: linear-gradient(180deg, hsl(210 20% 99%), hsl(155 20% 98%));
+    --shadow-soft: 0 2px 16px -4px hsl(210 50% 40% / 0.08);
+    --shadow-hover: 0 8px 24px -6px hsl(210 50% 40% / 0.12);
+    --shadow-card: 0 1px 3px 0 hsl(210 30% 40% / 0.1);
+    
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 0 0% 98%;
 
@@ -61,33 +65,33 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 210 20% 12%;
-    --foreground: 150 15% 95%;
+    --background: 215 30% 10%;
+    --foreground: 210 20% 95%;
 
-    --card: 210 20% 15%;
-    --card-foreground: 150 15% 95%;
+    --card: 215 25% 14%;
+    --card-foreground: 210 20% 95%;
 
-    --popover: 210 20% 15%;
-    --popover-foreground: 150 15% 95%;
+    --popover: 215 25% 14%;
+    --popover-foreground: 210 20% 95%;
 
-    --primary: 150 60% 55%;
-    --primary-foreground: 210 20% 12%;
+    --primary: 210 80% 55%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 180 50% 55%;
-    --secondary-foreground: 210 20% 12%;
+    --secondary: 155 60% 55%;
+    --secondary-foreground: 215 30% 10%;
 
-    --muted: 210 20% 20%;
-    --muted-foreground: 150 10% 65%;
+    --muted: 215 25% 18%;
+    --muted-foreground: 210 15% 60%;
 
-    --accent: 172 55% 50%;
-    --accent-foreground: 210 20% 12%;
+    --accent: 205 75% 60%;
+    --accent-foreground: 215 30% 10%;
 
     --destructive: 0 62.8% 50%;
-    --destructive-foreground: 150 15% 95%;
+    --destructive-foreground: 210 20% 95%;
 
-    --border: 210 20% 25%;
-    --input: 210 20% 25%;
-    --ring: 150 60% 55%;
+    --border: 215 25% 22%;
+    --input: 215 25% 22%;
+    --ring: 210 80% 55%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -105,6 +109,49 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "kern" 1, "liga" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Accessibility improvements */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+
+  /* Skip to main content link for keyboard navigation */
+  .skip-to-main {
+    @apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md;
+  }
+  
+  /* Improved readability */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold tracking-tight;
+    line-height: 1.2;
+  }
+  
+  p {
+    line-height: 1.7;
+  }
+  
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    :root {
+      --border: 210 30% 80%;
+    }
+    .dark {
+      --border: 215 30% 30%;
+    }
+  }
+  
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }

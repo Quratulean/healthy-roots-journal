@@ -38,53 +38,56 @@ const articles = [
 
 const FeaturedArticles = () => {
   return (
-    <section className="py-20 bg-muted/30">
+    <section className="py-16 md:py-20 bg-gradient-to-b from-background to-muted/20" aria-labelledby="featured-heading">
       <div className="container">
-        <div className="text-center mb-12">
-          <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
-            Featured Articles
+        <header className="text-center mb-10 md:mb-12">
+          <h2 id="featured-heading" className="font-display text-3xl md:text-4xl font-bold mb-3 md:mb-4">
+            Research-Backed Articles
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Expert insights and practical advice to help you achieve your health goals
+          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
+            Evidence-based insights reviewed by health experts to support your wellness journey
           </p>
-        </div>
+        </header>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
           {articles.map((article) => (
-            <Link key={article.id} to={`/blog/${article.slug}`}>
-            <Card 
-              className="overflow-hidden group hover:shadow-lg transition-all duration-300 cursor-pointer border-muted"
-            >
-              <div className="relative h-48 overflow-hidden">
-                <img 
-                  src={article.image} 
-                  alt={article.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <Badge className="absolute top-4 left-4 bg-background/90 text-foreground hover:bg-background">
-                  {article.category}
-                </Badge>
-              </div>
-              <CardHeader>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-                  <Clock className="h-4 w-4" />
-                  <span>{article.readTime}</span>
-                </div>
-                <CardTitle className="group-hover:text-primary transition-colors line-clamp-2">
-                  {article.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="line-clamp-2 mb-4">
-                  {article.description}
-                </CardDescription>
-                <div className="flex items-center gap-2 text-primary font-medium text-sm group-hover:gap-3 transition-all">
-                  Read Article
-                  <ArrowUpRight className="h-4 w-4" />
-                </div>
-              </CardContent>
-            </Card>
-            </Link>
+            <article key={article.id}>
+              <Link to={`/blog/${article.slug}`} aria-label={`Read article: ${article.title}`}>
+                <Card 
+                  className="overflow-hidden group hover:shadow-xl transition-all duration-300 cursor-pointer border h-full hover:border-primary/50"
+                >
+                  <div className="relative h-48 overflow-hidden bg-muted">
+                    <img 
+                      src={article.image} 
+                      alt={`${article.category} - ${article.title}`}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                    <Badge className="absolute top-4 left-4 bg-background/95 text-foreground hover:bg-background shadow-sm">
+                      {article.category}
+                    </Badge>
+                  </div>
+                  <CardHeader className="pb-3">
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
+                      <Clock className="h-4 w-4" aria-hidden="true" />
+                      <time>{article.readTime}</time>
+                    </div>
+                    <CardTitle className="group-hover:text-primary transition-colors line-clamp-2 text-xl">
+                      {article.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <CardDescription className="line-clamp-3 mb-4 text-base">
+                      {article.description}
+                    </CardDescription>
+                    <div className="flex items-center gap-2 text-primary font-medium text-sm group-hover:gap-3 transition-all">
+                      Read Full Article
+                      <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+            </article>
           ))}
         </div>
       </div>

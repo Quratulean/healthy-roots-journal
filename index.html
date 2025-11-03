@@ -3,24 +3,60 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Health & Wellness Blog - Your Guide to Better Living</title>
-    <meta name="description" content="Discover expert health advice, wellness tips, nutrition guides, and fitness insights to help you live your healthiest life." />
-    <meta name="author" content="Health Blog" />
+    
+    <!-- Primary Meta Tags -->
+    <title>HealthHub - Research-Based Nutrition, Mental Health & Fitness Insights</title>
+    <meta name="title" content="HealthHub - Research-Based Nutrition, Mental Health & Fitness Insights" />
+    <meta name="description" content="Access evidence-based health information on nutrition, mental wellness, and fitness. Expert-reviewed content designed for better health literacy and informed wellness decisions." />
+    <meta name="keywords" content="nutrition research, mental health, fitness science, evidence-based health, wellness blog, health literacy" />
+    <meta name="author" content="HealthHub" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://yoursite.com" />
+    
+    <!-- Fonts - Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
-    <meta property="og:title" content="Health & Wellness Blog - Your Guide to Better Living" />
-    <meta property="og:description" content="Discover expert health advice, wellness tips, nutrition guides, and fitness insights to help you live your healthiest life." />
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yoursite.com/" />
+    <meta property="og:title" content="HealthHub - Research-Based Health & Wellness Insights" />
+    <meta property="og:description" content="Access evidence-based health information on nutrition, mental wellness, and fitness. Expert-reviewed content for better health decisions." />
     <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://yoursite.com/" />
+    <meta property="twitter:title" content="HealthHub - Research-Based Health & Wellness Insights" />
+    <meta property="twitter:description" content="Access evidence-based health information on nutrition, mental wellness, and fitness." />
+    <meta property="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    
+    <!-- Accessibility -->
+    <meta name="theme-color" content="#2563eb" />
+    
+    <!-- Structured Data for Medical/Health Content -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MedicalWebPage",
+      "name": "HealthHub",
+      "description": "Evidence-based health information on nutrition, mental health, and fitness",
+      "about": {
+        "@type": "MedicalAudience",
+        "audienceType": "Patient"
+      },
+      "specialty": ["Nutrition", "Mental Health", "Fitness"],
+      "publisher": {
+        "@type": "Organization",
+        "name": "HealthHub"
+      }
+    }
+    </script>
   </head>
 
   <body>
+    <a href="#main-content" class="skip-to-main">Skip to main content</a>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

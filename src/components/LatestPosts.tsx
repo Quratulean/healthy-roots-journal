@@ -36,44 +36,48 @@ const latestPosts = [
 
 const LatestPosts = () => {
   return (
-    <section className="py-20 bg-muted/30">
+    <section className="py-16 md:py-20 bg-gradient-to-b from-muted/20 to-background" aria-labelledby="latest-heading">
       <div className="container">
-        <div className="text-center mb-12">
-          <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
-            Latest Posts
+        <header className="text-center mb-10 md:mb-12">
+          <h2 id="latest-heading" className="font-display text-3xl md:text-4xl font-bold mb-3 md:mb-4">
+            Recent Research & Insights
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Stay updated with our newest health and wellness content
+          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
+            Stay informed with the latest evidence-based health discoveries and wellness research
           </p>
-        </div>
+        </header>
 
-        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-5 md:gap-6 max-w-4xl mx-auto">
           {latestPosts.map((post) => (
-            <Link key={post.id} to={`/blog/${post.slug}`}>
-              <Card className="group hover:shadow-md hover:border-primary transition-all duration-300 cursor-pointer">
-                <CardHeader>
-                  <div className="flex items-center justify-between mb-2">
-                    <Badge variant="outline">{post.category}</Badge>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Calendar className="h-4 w-4" />
-                      <span>{post.date}</span>
+            <article key={post.id}>
+              <Link to={`/blog/${post.slug}`} aria-label={`Read article: ${post.title}`}>
+                <Card className="group hover:shadow-lg hover:border-primary transition-all duration-300 cursor-pointer h-full">
+                  <CardHeader>
+                    <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
+                      <Badge variant="outline" className="font-medium">{post.category}</Badge>
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Calendar className="h-4 w-4" aria-hidden="true" />
+                        <time dateTime={post.date}>{post.date}</time>
+                      </div>
                     </div>
-                  </div>
-                  <CardTitle className="group-hover:text-primary transition-colors">
-                    {post.title}
-                  </CardTitle>
-                </CardHeader>
-              </Card>
-            </Link>
+                    <CardTitle className="group-hover:text-primary transition-colors text-xl leading-snug">
+                      {post.title}
+                    </CardTitle>
+                  </CardHeader>
+                </Card>
+              </Link>
+            </article>
           ))}
         </div>
 
-        <div className="text-center mt-8">
+        <div className="text-center mt-10">
           <Link 
             to="/articles"
-            className="text-primary font-medium hover:underline inline-flex items-center gap-2"
+            className="text-primary font-semibold hover:underline inline-flex items-center gap-2 text-base group"
+            aria-label="View all health articles"
           >
-            View All Articles →
+            Explore All Articles
+            <span className="group-hover:translate-x-1 transition-transform" aria-hidden="true">→</span>
           </Link>
         </div>
       </div>
