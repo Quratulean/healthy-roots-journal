@@ -16,10 +16,7 @@ const Header = () => {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60" role="banner">
       <div className="container flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity" aria-label="HealthHub Home">
-          <img src={logo} alt="HealthHub Logo" className="h-10 w-10 rounded-full object-cover" />
-          <span className="font-display text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            HealthHub
-          </span>
+          <img src={logo} alt="HealthHub Logo" className="h-14 w-14 rounded-full object-cover shadow-md" />
         </Link>
 
         {/* Desktop Navigation */}

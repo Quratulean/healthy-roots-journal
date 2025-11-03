@@ -1,4 +1,5 @@
 import { Heart, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import logo from "@/assets/logo.jpg";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -15,11 +16,8 @@ const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-10">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <a href="#home" className="flex items-center gap-2 mb-4 hover:opacity-80 transition-opacity" aria-label="HealthHub Home">
-              <Heart className="h-6 w-6 text-primary fill-primary" aria-hidden="true" />
-              <span className="font-display text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                HealthHub
-              </span>
+            <a href="#home" className="flex items-center gap-3 mb-4 hover:opacity-80 transition-opacity" aria-label="HealthHub Home">
+              <img src={logo} alt="HealthHub Logo" className="h-12 w-12 rounded-full object-cover shadow-md" />
             </a>
             <p className="text-muted-foreground mb-4 max-w-sm leading-relaxed">
               Your trusted source for <strong>evidence-based</strong> health and wellness information. 

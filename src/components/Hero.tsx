@@ -16,7 +16,7 @@ const Hero = () => {
           className="w-full h-full object-cover"
           loading="eager"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/98 via-background/85 to-background/50" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/85 to-background/30" />
       </div>
       
       <div className="container relative z-10 py-16 md:py-20">
