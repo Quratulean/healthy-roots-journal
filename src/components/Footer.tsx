@@ -5,9 +5,24 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const footerLinks = {
-    Content: ["Nutrition", "Fitness", "Mental Health", "Wellness"],
-    Company: ["About Us", "Contact", "Privacy Policy", "Terms of Service"],
-    Resources: ["Blog", "Newsletter", "FAQ", "Support"],
+    Content: [
+      { name: "Nutrition", href: "/nutrition" },
+      { name: "Fitness", href: "/fitness" },
+      { name: "Mental Health", href: "/mental-health" },
+      { name: "Wellness", href: "/wellness" }
+    ],
+    Company: [
+      { name: "About Us", href: "/about" },
+      { name: "Contact", href: "/contact" },
+      { name: "Privacy Policy", href: "/privacy-policy" },
+      { name: "Terms of Service", href: "/terms-of-service" }
+    ],
+    Resources: [
+      { name: "Blog", href: "/articles" },
+      { name: "Newsletter", href: "/newsletter" },
+      { name: "FAQ", href: "/faq" },
+      { name: "Support", href: "/support" }
+    ],
   };
 
   return (
@@ -47,12 +62,12 @@ const Footer = () => {
               </h3>
               <ul className="space-y-2.5">
                 {links.map((link) => (
-                  <li key={link}>
+                  <li key={link.name}>
                     <a 
-                      href="#" 
+                      href={link.href} 
                       className="text-muted-foreground hover:text-primary transition-colors text-sm hover:underline"
                     >
-                      {link}
+                      {link.name}
                     </a>
                   </li>
                 ))}

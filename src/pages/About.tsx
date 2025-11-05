@@ -4,24 +4,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Heart, Target, Users, Award } from "lucide-react";
 
 const About = () => {
-  const team = [
-    {
-      name: "Dr. Sarah Johnson",
-      role: "Nutrition Expert",
-      bio: "Certified nutritionist with 15+ years of experience in holistic health and dietary wellness."
-    },
-    {
-      name: "Mike Thompson",
-      role: "Fitness Coach",
-      bio: "Professional trainer specializing in sustainable fitness and strength training programs."
-    },
-    {
-      name: "Dr. Emily Chen",
-      role: "Mental Health Specialist",
-      bio: "Licensed psychologist focused on mindfulness-based stress reduction and emotional wellness."
-    }
-  ];
-
   const values = [
     {
       icon: Heart,
@@ -93,35 +75,6 @@ const About = () => {
                   </Card>
                 );
               })}
-            </div>
-          </div>
-        </section>
-
-        {/* Team Section */}
-        <section className="py-20 bg-muted/30">
-          <div className="container">
-            <div className="text-center mb-12">
-              <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">Meet Our Team</h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                Our expert contributors bring decades of combined experience in health and wellness
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              {team.map((member) => (
-                <Card key={member.name} className="text-center">
-                  <CardHeader>
-                    <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                      <Users className="h-12 w-12 text-primary" />
-                    </div>
-                    <CardTitle className="mb-2">{member.name}</CardTitle>
-                    <p className="text-primary font-medium">{member.role}</p>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">{member.bio}</p>
-                  </CardContent>
-                </Card>
-              ))}
             </div>
           </div>
         </section>

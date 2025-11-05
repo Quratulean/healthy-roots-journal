@@ -11,6 +11,15 @@ import AllArticles from "./pages/AllArticles";
 import NotFound from "./pages/NotFound";
 import Auth from "./pages/Auth";
 import Admin from "./pages/Admin";
+import Nutrition from "./pages/Nutrition";
+import Fitness from "./pages/Fitness";
+import MentalHealth from "./pages/MentalHealth";
+import Wellness from "./pages/Wellness";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
+import FAQ from "./pages/FAQ";
+import Support from "./pages/Support";
+import Newsletter from "./pages/Newsletter";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +37,15 @@ const App = () => (
           <Route path="/articles" element={<AllArticles />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/nutrition" element={<Nutrition />} />
+          <Route path="/fitness" element={<Fitness />} />
+          <Route path="/mental-health" element={<MentalHealth />} />
+          <Route path="/wellness" element={<Wellness />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/support" element={<Support />} />
+          <Route path="/newsletter" element={<Newsletter />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
