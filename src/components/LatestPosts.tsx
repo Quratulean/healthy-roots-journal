@@ -6,28 +6,28 @@ import { Link } from "react-router-dom";
 const latestPosts = [
   {
     id: 1,
-    title: "5 Morning Habits That Transform Your Health",
+    title: "Longitudinal Study: Circadian Rhythm Optimization and Biomarker Improvement",
     category: "Wellness",
     date: "March 18, 2024",
     slug: "morning-habits-health"
   },
   {
     id: 2,
-    title: "The Science of Hydration: How Much Water Do You Really Need?",
+    title: "Controlled Trial: Hydration Protocols and Cognitive Performance Metrics",
     category: "Nutrition",
     date: "March 17, 2024",
     slug: "hydration-science"
   },
   {
     id: 3,
-    title: "Strength Training for Beginners: Complete Guide",
+    title: "Evidence-Based Progressive Overload: Systematic Review of Resistance Training",
     category: "Fitness",
     date: "March 16, 2024",
     slug: "strength-training-beginners"
   },
   {
     id: 4,
-    title: "Managing Stress Through Breathing Techniques",
+    title: "Clinical Research: Respiratory Modulation and HRV-Based Stress Management",
     category: "Mental Health",
     date: "March 14, 2024",
     slug: "breathing-techniques-stress"

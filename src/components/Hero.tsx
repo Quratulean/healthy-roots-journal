@@ -25,14 +25,14 @@ const Hero = () => {
             id="hero-title" 
             className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight"
           >
-            Your Journey to
+            Evidence-Based
             <span className="block bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mt-2">
-              Better Health
+              Health Research
             </span>
           </h1>
           <p className="text-base md:text-lg lg:text-xl text-muted-foreground mb-6 md:mb-8 leading-relaxed max-w-xl">
-            Discover expert-backed advice on nutrition, fitness, and mental wellness. 
-            Transform your lifestyle with evidence-based insights and practical tips.
+            Access peer-reviewed scientific studies and clinical research on nutrition, fitness, and mental wellness. 
+            Only evidence from academic journals and controlled trials.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
             <Button 
