@@ -39,8 +39,8 @@ const About = () => {
               About HealthHub
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              We're on a mission to make evidence-based health and wellness information 
-              accessible to everyone, empowering you to make informed decisions about your wellbeing.
+              Your trusted source for evidence-based health and wellness information. 
+              We cut through the noise with facts, not fads — every article backed by credible research and expert insight.
             </p>
           </div>
         </section>
@@ -50,10 +50,15 @@ const About = () => {
           <div className="container">
             <div className="max-w-3xl mx-auto text-center mb-16">
               <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">Our Mission</h2>
+              <div className="bg-primary/5 border-l-4 border-primary p-8 rounded-r-lg mb-8">
+                <p className="text-xl font-semibold text-foreground italic leading-relaxed">
+                  "To simplify health, fitness, and nutrition with facts — not fads. Every article is backed by credible research, medical studies, and expert insight."
+                </p>
+              </div>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                In a world filled with conflicting health advice, we cut through the noise to deliver 
-                clear, science-backed guidance. Our team of certified health professionals is dedicated 
-                to helping you achieve your wellness goals through practical, sustainable approaches.
+                In a world filled with conflicting health advice and trendy wellness fads, we deliver 
+                clear, science-backed guidance you can trust. Every piece of content is rigorously reviewed 
+                and supported by peer-reviewed research, clinical studies, and expert medical insight.
               </p>
             </div>
 
