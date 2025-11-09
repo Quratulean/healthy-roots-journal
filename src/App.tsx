@@ -20,6 +20,9 @@ import TermsOfService from "./pages/TermsOfService";
 import FAQ from "./pages/FAQ";
 import Support from "./pages/Support";
 import Newsletter from "./pages/Newsletter";
+import Lifestyle from "./pages/Lifestyle";
+import Sleep from "./pages/Sleep";
+import Beauty from "./pages/Beauty";
 
 const queryClient = new QueryClient();
 
@@ -46,6 +49,9 @@ const App = () => (
           <Route path="/faq" element={<FAQ />} />
           <Route path="/support" element={<Support />} />
           <Route path="/newsletter" element={<Newsletter />} />
+          <Route path="/lifestyle" element={<Lifestyle />} />
+          <Route path="/sleep" element={<Sleep />} />
+          <Route path="/beauty" element={<Beauty />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
