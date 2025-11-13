@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail } from "lucide-react";
 import { toast } from "sonner";
 
 const Contact = () => {
@@ -87,36 +87,15 @@ const Contact = () => {
                   <CardTitle className="text-lg">Email Us</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">contact@healthhub.com</p>
-                  <p className="text-muted-foreground">support@healthhub.com</p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-2">
-                    <Phone className="h-6 w-6 text-primary" />
-                  </div>
-                  <CardTitle className="text-lg">Call Us</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">+1 (555) 123-4567</p>
-                  <p className="text-sm text-muted-foreground mt-1">Mon-Fri, 9am-5pm EST</p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-2">
-                    <MapPin className="h-6 w-6 text-primary" />
-                  </div>
-                  <CardTitle className="text-lg">Visit Us</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">
-                    123 Wellness Avenue<br />
-                    Health City, HC 12345<br />
-                    United States
+                  <p className="text-muted-foreground mb-2">We're here to help! Reach out to us at:</p>
+                  <a href="mailto:contact@healthhub.com" className="block text-primary hover:underline font-medium mb-1">
+                    contact@healthhub.com
+                  </a>
+                  <a href="mailto:support@healthhub.com" className="block text-primary hover:underline font-medium">
+                    support@healthhub.com
+                  </a>
+                  <p className="text-sm text-muted-foreground mt-4">
+                    We typically respond within 24-48 hours.
                   </p>
                 </CardContent>
               </Card>
