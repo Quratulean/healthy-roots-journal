@@ -1,11 +1,50 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Mail } from "lucide-react";
+import { useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 const Newsletter = () => {
-  const handleSubmit = (e: React.FormEvent) => {
+  const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Newsletter subscription logic here
+    setIsLoading(true);
+
+    try {
+      const { error } = await supabase
+        .from("newsletter_subscribers")
+        .insert([{ email }]);
+
+      if (error) {
+        if (error.code === "23505") {
+          toast({
+            title: "Already subscribed!",
+            description: "This email is already on our newsletter list.",
+          });
+        } else {
+          throw error;
+        }
+      } else {
+        toast({
+          title: "Successfully subscribed!",
+          description: "Welcome to our health & wellness community.",
+        });
+        setEmail("");
+      }
+    } catch (error) {
+      console.error("Newsletter subscription error:", error);
+      toast({
+        title: "Subscription failed",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -29,16 +68,20 @@ const Newsletter = () => {
               id="newsletter-email"
               type="email" 
               placeholder="Your email address" 
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
+              disabled={isLoading}
               aria-required="true"
               className="bg-background/10 border-primary-foreground/30 text-primary-foreground placeholder:text-primary-foreground/70 focus-visible:ring-primary-foreground/50 focus-visible:ring-offset-0"
             />
             <Button 
               type="submit"
-              className="bg-background text-primary hover:bg-background/90 font-semibold shadow-lg hover:shadow-xl transition-all whitespace-nowrap"
+              disabled={isLoading}
+              className="bg-background text-primary hover:bg-background/90 font-semibold shadow-lg hover:shadow-xl transition-all whitespace-nowrap disabled:opacity-50"
               aria-label="Subscribe to newsletter"
             >
-              Subscribe Now
+              {isLoading ? "Subscribing..." : "Subscribe Now"}
             </Button>
           </form>
           

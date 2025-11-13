@@ -13,7 +13,9 @@ const Index = () => {
       <main id="main-content" role="main">
         <Hero />
         <FeaturedArticles />
-        <Categories />
+        <div id="categories">
+          <Categories />
+        </div>
         <LatestPosts />
         <Newsletter />
       </main>
