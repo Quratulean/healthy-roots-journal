@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import BlogPostEditor from "@/components/admin/BlogPostEditor";
 import BlogPostList from "@/components/admin/BlogPostList";
 import TagManager from "@/components/admin/TagManager";
+import NewsletterSubscribers from "@/components/admin/NewsletterSubscribers";
 import { LogOut } from "lucide-react";
 
 const Admin = () => {
@@ -45,10 +46,11 @@ const Admin = () => {
         </div>
 
         <Tabs defaultValue="posts" className="w-full">
-          <TabsList className="grid w-full max-w-md grid-cols-3">
+          <TabsList className="grid w-full max-w-2xl grid-cols-4">
             <TabsTrigger value="posts">Posts</TabsTrigger>
             <TabsTrigger value="new">New Post</TabsTrigger>
             <TabsTrigger value="tags">Tags</TabsTrigger>
+            <TabsTrigger value="subscribers">Subscribers</TabsTrigger>
           </TabsList>
           
           <TabsContent value="posts" className="mt-6">
@@ -61,6 +63,10 @@ const Admin = () => {
           
           <TabsContent value="tags" className="mt-6">
             <TagManager />
+          </TabsContent>
+          
+          <TabsContent value="subscribers" className="mt-6">
+            <NewsletterSubscribers />
           </TabsContent>
         </Tabs>
       </main>
