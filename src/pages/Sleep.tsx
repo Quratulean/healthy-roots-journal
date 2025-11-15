@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import FeaturedArticles from "@/components/FeaturedArticles";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Clock, Calendar } from "lucide-react";
@@ -87,6 +88,12 @@ const Sleep = () => {
                 </Link>
               ))}
             </div>
+          </div>
+        </section>
+
+        <section className="py-20 bg-muted/30">
+          <div className="container">
+            <FeaturedArticles />
           </div>
         </section>
       </main>
