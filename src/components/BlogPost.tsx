@@ -2,6 +2,7 @@ import { Calendar, User, Clock, Share2, Facebook, Twitter, Linkedin } from "luci
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import DOMPurify from "dompurify";
 
 interface BlogPostProps {
   title: string;
@@ -67,7 +68,7 @@ const BlogPost = ({ title, category, author, date, readTime, image, content }: B
 
       {/* Content */}
       <div className="prose prose-lg max-w-none mb-12">
-        <div dangerouslySetInnerHTML={{ __html: content }} />
+        <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }} />
       </div>
 
       <Separator className="my-12" />
