@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import FeaturedArticles from "@/components/FeaturedArticles";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Leaf, Sun, Droplet, Wind } from "lucide-react";
 
@@ -92,6 +93,12 @@ const Wellness = () => {
                 </li>
               </ul>
             </div>
+          </div>
+        </section>
+
+        <section className="py-20 bg-muted/30">
+          <div className="container">
+            <FeaturedArticles />
           </div>
         </section>
       </main>
