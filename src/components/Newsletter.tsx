@@ -4,6 +4,11 @@ import { Mail } from "lucide-react";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { z } from "zod";
+
+const emailSchema = z.object({
+  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
+});
 
 const Newsletter = () => {
   const [email, setEmail] = useState("");
@@ -15,9 +20,22 @@ const Newsletter = () => {
     setIsLoading(true);
 
     try {
+      // Validate email with Zod schema
+      const validation = emailSchema.safeParse({ email });
+      
+      if (!validation.success) {
+        toast({
+          title: "Invalid email",
+          description: validation.error.errors[0].message,
+          variant: "destructive",
+        });
+        setIsLoading(false);
+        return;
+      }
+
       const { error } = await supabase
         .from("newsletter_subscribers")
-        .insert([{ email }]);
+        .insert([{ email: validation.data.email }]);
 
       if (error) {
         if (error.code === "23505") {
@@ -26,7 +44,11 @@ const Newsletter = () => {
             description: "This email is already on our newsletter list.",
           });
         } else {
-          throw error;
+          toast({
+            title: "Subscription failed",
+            description: "Please try again later.",
+            variant: "destructive",
+          });
         }
       } else {
         toast({
@@ -36,7 +58,6 @@ const Newsletter = () => {
         setEmail("");
       }
     } catch (error) {
-      console.error("Newsletter subscription error:", error);
       toast({
         title: "Subscription failed",
         description: "Please try again later.",
