@@ -15,18 +15,19 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm" role="banner">
-      <div className="container flex h-20 items-center justify-between">
-        <Link to="/" className="flex items-center gap-3 hover:opacity-90 transition-opacity group" aria-label="HealthHub Home">
+      <div className="container flex h-24 items-center justify-between">
+        <Link to="/" className="flex items-center gap-4 hover:opacity-90 transition-opacity group" aria-label="Fact Fit Home">
           <div className="relative">
             <img 
               src={logo} 
-              alt="HealthHub - Evidence-Based Health & Wellness" 
-              className="h-16 w-16 rounded-xl object-cover shadow-lg ring-2 ring-primary/10 group-hover:ring-primary/30 transition-all" 
+              alt="Fact Fit - Evidence-Based Health & Wellness" 
+              className="h-20 w-20 rounded-2xl object-cover shadow-xl ring-2 ring-primary/20 group-hover:ring-primary/40 transition-all" 
+              style={{ imageRendering: 'crisp-edges' }}
             />
           </div>
           <div className="hidden sm:block">
-            <div className="font-display text-xl font-bold text-foreground">HealthHub</div>
-            <div className="text-xs text-muted-foreground">Evidence-Based Wellness</div>
+            <div className="font-display text-2xl font-bold text-foreground tracking-tight">Fact Fit</div>
+            <div className="text-sm text-muted-foreground">Evidence-Based Wellness</div>
           </div>
         </Link>
 
