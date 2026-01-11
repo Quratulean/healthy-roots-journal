@@ -26,7 +26,7 @@ const TermsOfService = () => {
             <section>
               <h2 className="text-2xl font-bold text-foreground mb-4">2. Use License</h2>
               <p>
-                Permission is granted to temporarily access the materials on HealthHub's website for 
+                Permission is granted to temporarily access the materials on Fact Fit's website for 
                 personal, non-commercial transitory viewing only.
               </p>
             </section>
@@ -51,7 +51,7 @@ const TermsOfService = () => {
             <section>
               <h2 className="text-2xl font-bold text-foreground mb-4">5. Limitation of Liability</h2>
               <p>
-                HealthHub shall not be liable for any damages arising out of the use or inability to 
+                Fact Fit shall not be liable for any damages arising out of the use or inability to 
                 use the materials on this website.
               </p>
             </section>

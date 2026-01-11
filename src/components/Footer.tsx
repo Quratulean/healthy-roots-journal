@@ -35,11 +35,16 @@ const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-10">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <Link to="/" className="flex items-center gap-3 mb-4 hover:opacity-80 transition-opacity" aria-label="HealthHub Home">
-              <img src={logo} alt="HealthHub Logo" className="h-14 w-14 rounded-xl object-cover shadow-md ring-2 ring-primary/10" />
+            <Link to="/" className="flex items-center gap-4 mb-4 hover:opacity-80 transition-opacity" aria-label="Fact Fit Home">
+              <img 
+                src={logo} 
+                alt="Fact Fit Logo" 
+                className="h-18 w-18 rounded-2xl object-cover shadow-lg ring-2 ring-primary/20" 
+                style={{ width: '72px', height: '72px', imageRendering: 'crisp-edges' }}
+              />
               <div>
-                <div className="font-display text-lg font-bold text-foreground">HealthHub</div>
-                <div className="text-xs text-muted-foreground">Evidence-Based Wellness</div>
+                <div className="font-display text-xl font-bold text-foreground tracking-tight">Fact Fit</div>
+                <div className="text-sm text-muted-foreground">Evidence-Based Wellness</div>
               </div>
             </Link>
             <p className="text-muted-foreground mb-4 max-w-sm leading-relaxed">
@@ -85,7 +90,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t mt-12 pt-8 text-center text-sm text-muted-foreground">
-          <p>© {currentYear} HealthHub. All rights reserved. | 
+          <p>© {currentYear} Fact Fit. All rights reserved. | 
             <span className="hover:text-primary transition-colors ml-1 cursor-pointer">Medical Disclaimer</span> | 
             <span className="hover:text-primary transition-colors ml-1 cursor-pointer">Accessibility Statement</span>
           </p>

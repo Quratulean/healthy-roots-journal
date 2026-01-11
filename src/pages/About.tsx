@@ -36,7 +36,7 @@ const About = () => {
         <section className="py-20 bg-gradient-to-r from-primary/10 to-accent/10">
           <div className="container text-center">
             <h1 className="font-display text-4xl md:text-5xl font-bold mb-6">
-              About HealthHub
+              About Fact Fit
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Your trusted source for evidence-based health and wellness information. 
