@@ -3,12 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BlogPostList from "@/components/admin/BlogPostList";
 import TagManager from "@/components/admin/TagManager";
 import NewsletterSubscribers from "@/components/admin/NewsletterSubscribers";
-import { LogOut, LayoutDashboard, FileText, Tags, Mail, Settings } from "lucide-react";
+import MediaLibrary from "@/components/admin/MediaLibrary";
+import { LogOut, LayoutDashboard, FileText, Tags, Mail, Image } from "lucide-react";
 
 const Admin = () => {
   const { user, loading, isAdmin, signOut } = useAuth();
@@ -58,10 +60,14 @@ const Admin = () => {
 
         {/* Main Tabs */}
         <Tabs defaultValue="posts" className="w-full">
-          <TabsList className="grid w-full max-w-lg grid-cols-3 mb-8">
+          <TabsList className="grid w-full max-w-2xl grid-cols-4 mb-8">
             <TabsTrigger value="posts" className="flex items-center gap-2">
               <FileText className="h-4 w-4" />
               <span className="hidden sm:inline">Posts</span>
+            </TabsTrigger>
+            <TabsTrigger value="media" className="flex items-center gap-2">
+              <Image className="h-4 w-4" />
+              <span className="hidden sm:inline">Media</span>
             </TabsTrigger>
             <TabsTrigger value="tags" className="flex items-center gap-2">
               <Tags className="h-4 w-4" />
@@ -75,6 +81,31 @@ const Admin = () => {
           
           <TabsContent value="posts" className="mt-0">
             <BlogPostList />
+          </TabsContent>
+
+          <TabsContent value="media" className="mt-0">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Image className="h-5 w-5" />
+                  Media Library
+                </CardTitle>
+                <CardDescription>
+                  Browse, manage, and delete uploaded images. Click an image to copy its URL.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <MediaLibrary 
+                  mode="browse" 
+                  onSelect={(url) => {
+                    navigator.clipboard.writeText(url);
+                    import("sonner").then(({ toast }) => {
+                      toast.success("Image URL copied to clipboard!");
+                    });
+                  }}
+                />
+              </CardContent>
+            </Card>
           </TabsContent>
           
           <TabsContent value="tags" className="mt-0">
