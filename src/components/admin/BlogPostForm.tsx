@@ -2,18 +2,17 @@ import { useState, useEffect } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
 import { z } from "zod";
-import { Save, Eye, ArrowLeft, X, Image as ImageIcon } from "lucide-react";
+import { Save, Eye, ArrowLeft, Image as ImageIcon } from "lucide-react";
 import RichTextEditor from "./RichTextEditor";
-
+import ImageUpload from "./ImageUpload";
+import { Input } from "@/components/ui/input";
 const postSchema = z.object({
   title: z.string().min(1, "Title is required").max(200),
   excerpt: z.string().max(300).optional(),
@@ -336,30 +335,10 @@ const BlogPostForm = ({ postId, onBack, onSuccess }: BlogPostFormProps) => {
                 Featured Image
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
-              {imageUrl && (
-                <div className="relative">
-                  <img
-                    src={imageUrl}
-                    alt="Featured"
-                    className="w-full h-32 object-cover rounded-lg"
-                  />
-                  <Button
-                    type="button"
-                    variant="destructive"
-                    size="icon"
-                    className="absolute top-2 right-2 h-6 w-6"
-                    onClick={() => setImageUrl("")}
-                  >
-                    <X className="h-3 w-3" />
-                  </Button>
-                </div>
-              )}
-              <Input
-                type="url"
+            <CardContent>
+              <ImageUpload
                 value={imageUrl}
-                onChange={(e) => setImageUrl(e.target.value)}
-                placeholder="Enter image URL..."
+                onChange={setImageUrl}
               />
             </CardContent>
           </Card>
