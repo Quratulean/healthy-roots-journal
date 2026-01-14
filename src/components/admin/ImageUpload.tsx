@@ -3,8 +3,16 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
-import { Upload, X, Loader2, Image as ImageIcon } from "lucide-react";
+import { Upload, X, Loader2, FolderOpen } from "lucide-react";
 import { cn } from "@/lib/utils";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import MediaLibrary from "./MediaLibrary";
 
 interface ImageUploadProps {
   value: string;
@@ -15,6 +23,8 @@ interface ImageUploadProps {
 const ImageUpload = ({ value, onChange, className }: ImageUploadProps) => {
   const [uploading, setUploading] = useState(false);
   const [dragActive, setDragActive] = useState(false);
+  const [libraryOpen, setLibraryOpen] = useState(false);
+  const [selectedFromLibrary, setSelectedFromLibrary] = useState<string>("");
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const uploadImage = async (file: File) => {
@@ -115,6 +125,20 @@ const ImageUpload = ({ value, onChange, className }: ImageUploadProps) => {
     onChange("");
   };
 
+  const handleLibrarySelect = () => {
+    if (selectedFromLibrary) {
+      onChange(selectedFromLibrary);
+      setLibraryOpen(false);
+      setSelectedFromLibrary("");
+    }
+  };
+
+  const openLibrary = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setSelectedFromLibrary(value);
+    setLibraryOpen(true);
+  };
+
   return (
     <div className={cn("space-y-3", className)}>
       {value ? (
@@ -136,6 +160,14 @@ const ImageUpload = ({ value, onChange, className }: ImageUploadProps) => {
             </Button>
             <Button
               type="button"
+              variant="secondary"
+              size="sm"
+              onClick={openLibrary}
+            >
+              <FolderOpen className="h-4 w-4" />
+            </Button>
+            <Button
+              type="button"
               variant="destructive"
               size="sm"
               onClick={handleRemove}
@@ -146,40 +178,52 @@ const ImageUpload = ({ value, onChange, className }: ImageUploadProps) => {
           </div>
         </div>
       ) : (
-        <div
-          className={cn(
-            "border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-colors",
-            dragActive
-              ? "border-primary bg-primary/5"
-              : "border-muted-foreground/25 hover:border-primary/50",
-            uploading && "pointer-events-none opacity-50"
-          )}
-          onDragEnter={handleDrag}
-          onDragLeave={handleDrag}
-          onDragOver={handleDrag}
-          onDrop={handleDrop}
-          onClick={() => fileInputRef.current?.click()}
-        >
-          {uploading ? (
-            <div className="flex flex-col items-center gap-2">
-              <Loader2 className="h-8 w-8 animate-spin text-primary" />
-              <p className="text-sm text-muted-foreground">Uploading...</p>
-            </div>
-          ) : (
-            <div className="flex flex-col items-center gap-2">
-              <div className="rounded-full bg-muted p-3">
-                <Upload className="h-6 w-6 text-muted-foreground" />
+        <div className="space-y-2">
+          <div
+            className={cn(
+              "border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-colors",
+              dragActive
+                ? "border-primary bg-primary/5"
+                : "border-muted-foreground/25 hover:border-primary/50",
+              uploading && "pointer-events-none opacity-50"
+            )}
+            onDragEnter={handleDrag}
+            onDragLeave={handleDrag}
+            onDragOver={handleDrag}
+            onDrop={handleDrop}
+            onClick={() => fileInputRef.current?.click()}
+          >
+            {uploading ? (
+              <div className="flex flex-col items-center gap-2">
+                <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                <p className="text-sm text-muted-foreground">Uploading...</p>
               </div>
-              <div>
-                <p className="text-sm font-medium">
-                  Drop image here or click to upload
-                </p>
-                <p className="text-xs text-muted-foreground mt-1">
-                  JPEG, PNG, WebP, GIF • Max 5MB
-                </p>
+            ) : (
+              <div className="flex flex-col items-center gap-2">
+                <div className="rounded-full bg-muted p-3">
+                  <Upload className="h-6 w-6 text-muted-foreground" />
+                </div>
+                <div>
+                  <p className="text-sm font-medium">
+                    Drop image here or click to upload
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    JPEG, PNG, WebP, GIF • Max 5MB
+                  </p>
+                </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
+          
+          <Button
+            type="button"
+            variant="outline"
+            className="w-full"
+            onClick={openLibrary}
+          >
+            <FolderOpen className="h-4 w-4 mr-2" />
+            Browse Media Library
+          </Button>
         </div>
       )}
 
@@ -205,6 +249,28 @@ const ImageUpload = ({ value, onChange, className }: ImageUploadProps) => {
         placeholder="https://example.com/image.jpg"
         disabled={uploading}
       />
+
+      {/* Media Library Dialog */}
+      <Dialog open={libraryOpen} onOpenChange={setLibraryOpen}>
+        <DialogContent className="max-w-4xl">
+          <DialogHeader>
+            <DialogTitle>Media Library</DialogTitle>
+          </DialogHeader>
+          <MediaLibrary
+            mode="select"
+            selectedUrl={selectedFromLibrary}
+            onSelect={setSelectedFromLibrary}
+          />
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setLibraryOpen(false)}>
+              Cancel
+            </Button>
+            <Button onClick={handleLibrarySelect} disabled={!selectedFromLibrary}>
+              Select Image
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
