@@ -14,68 +14,218 @@ export type Database = {
   }
   public: {
     Tables: {
+      admin_activity_logs: {
+        Row: {
+          action: string
+          created_at: string | null
+          details: Json | null
+          entity_id: string | null
+          entity_type: string | null
+          id: string
+          user_id: string
+        }
+        Insert: {
+          action: string
+          created_at?: string | null
+          details?: Json | null
+          entity_id?: string | null
+          entity_type?: string | null
+          id?: string
+          user_id: string
+        }
+        Update: {
+          action?: string
+          created_at?: string | null
+          details?: Json | null
+          entity_id?: string | null
+          entity_type?: string | null
+          id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       blog_posts: {
         Row: {
           author_id: string | null
           content: string
           created_at: string | null
           excerpt: string | null
+          featured_image: string | null
           id: string
-          image_url: string | null
+          last_medically_reviewed: string | null
+          needs_update: boolean | null
           published: boolean | null
+          published_at: string | null
+          reading_time: number | null
+          reviewer_id: string | null
+          scheduled_at: string | null
+          seo_description: string | null
+          seo_title: string | null
           slug: string
+          status: Database["public"]["Enums"]["post_status"] | null
           title: string
           updated_at: string | null
+          view_count: number | null
         }
         Insert: {
           author_id?: string | null
           content: string
           created_at?: string | null
           excerpt?: string | null
+          featured_image?: string | null
           id?: string
-          image_url?: string | null
+          last_medically_reviewed?: string | null
+          needs_update?: boolean | null
           published?: boolean | null
+          published_at?: string | null
+          reading_time?: number | null
+          reviewer_id?: string | null
+          scheduled_at?: string | null
+          seo_description?: string | null
+          seo_title?: string | null
           slug: string
+          status?: Database["public"]["Enums"]["post_status"] | null
           title: string
           updated_at?: string | null
+          view_count?: number | null
         }
         Update: {
           author_id?: string | null
           content?: string
           created_at?: string | null
           excerpt?: string | null
+          featured_image?: string | null
           id?: string
-          image_url?: string | null
+          last_medically_reviewed?: string | null
+          needs_update?: boolean | null
           published?: boolean | null
+          published_at?: string | null
+          reading_time?: number | null
+          reviewer_id?: string | null
+          scheduled_at?: string | null
+          seo_description?: string | null
+          seo_title?: string | null
           slug?: string
+          status?: Database["public"]["Enums"]["post_status"] | null
           title?: string
           updated_at?: string | null
+          view_count?: number | null
+        }
+        Relationships: []
+      }
+      categories: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          id: string
+          name: string
+          slug: string
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          name: string
+          slug: string
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          name?: string
+          slug?: string
+        }
+        Relationships: []
+      }
+      medical_reviewers: {
+        Row: {
+          created_at: string | null
+          credentials: string | null
+          id: string
+          is_active: boolean | null
+          name: string
+          profile_image: string | null
+          specialization: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          credentials?: string | null
+          id?: string
+          is_active?: boolean | null
+          name: string
+          profile_image?: string | null
+          specialization?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          credentials?: string | null
+          id?: string
+          is_active?: boolean | null
+          name?: string
+          profile_image?: string | null
+          specialization?: string | null
         }
         Relationships: []
       }
       newsletter_subscribers: {
         Row: {
+          confirmed: boolean | null
           created_at: string
           email: string
           id: string
           is_active: boolean
+          source: string | null
           subscribed_at: string
         }
         Insert: {
+          confirmed?: boolean | null
           created_at?: string
           email: string
           id?: string
           is_active?: boolean
+          source?: string | null
           subscribed_at?: string
         }
         Update: {
+          confirmed?: boolean | null
           created_at?: string
           email?: string
           id?: string
           is_active?: boolean
+          source?: string | null
           subscribed_at?: string
         }
         Relationships: []
+      }
+      post_categories: {
+        Row: {
+          category_id: string
+          post_id: string
+        }
+        Insert: {
+          category_id: string
+          post_id: string
+        }
+        Update: {
+          category_id?: string
+          post_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "post_categories_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "post_categories_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "blog_posts"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       post_tags: {
         Row: {
@@ -107,27 +257,68 @@ export type Database = {
           },
         ]
       }
+      post_versions: {
+        Row: {
+          content_snapshot: Json
+          edited_at: string | null
+          edited_by: string | null
+          id: string
+          post_id: string
+          version_number: number
+        }
+        Insert: {
+          content_snapshot: Json
+          edited_at?: string | null
+          edited_by?: string | null
+          id?: string
+          post_id: string
+          version_number: number
+        }
+        Update: {
+          content_snapshot?: Json
+          edited_at?: string | null
+          edited_by?: string | null
+          id?: string
+          post_id?: string
+          version_number?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "post_versions_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "blog_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           avatar_url: string | null
           bio: string | null
           created_at: string | null
+          credentials: string | null
           display_name: string | null
           id: string
+          is_author: boolean | null
         }
         Insert: {
           avatar_url?: string | null
           bio?: string | null
           created_at?: string | null
+          credentials?: string | null
           display_name?: string | null
           id: string
+          is_author?: boolean | null
         }
         Update: {
           avatar_url?: string | null
           bio?: string | null
           created_at?: string | null
+          credentials?: string | null
           display_name?: string | null
           id?: string
+          is_author?: boolean | null
         }
         Relationships: []
       }
@@ -188,6 +379,7 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "user" | "editor"
+      post_status: "draft" | "editor_review" | "scheduled" | "published"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -316,6 +508,7 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "user", "editor"],
+      post_status: ["draft", "editor_review", "scheduled", "published"],
     },
   },
 } as const

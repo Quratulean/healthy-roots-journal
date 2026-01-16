@@ -8,9 +8,11 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BlogPostList from "@/components/admin/BlogPostList";
 import TagManager from "@/components/admin/TagManager";
+import CategoryManager from "@/components/admin/CategoryManager";
 import NewsletterSubscribers from "@/components/admin/NewsletterSubscribers";
 import MediaLibrary from "@/components/admin/MediaLibrary";
-import { LogOut, LayoutDashboard, FileText, Tags, Mail, Image } from "lucide-react";
+import ActivityLogs from "@/components/admin/ActivityLogs";
+import { LogOut, LayoutDashboard, FileText, Tags, Mail, Image, FolderTree, Activity } from "lucide-react";
 
 const Admin = () => {
   const { user, loading, isAdmin, signOut } = useAuth();
@@ -60,10 +62,14 @@ const Admin = () => {
 
         {/* Main Tabs */}
         <Tabs defaultValue="posts" className="w-full">
-          <TabsList className="grid w-full max-w-2xl grid-cols-4 mb-8">
+          <TabsList className="grid w-full max-w-4xl grid-cols-6 mb-8">
             <TabsTrigger value="posts" className="flex items-center gap-2">
               <FileText className="h-4 w-4" />
               <span className="hidden sm:inline">Posts</span>
+            </TabsTrigger>
+            <TabsTrigger value="categories" className="flex items-center gap-2">
+              <FolderTree className="h-4 w-4" />
+              <span className="hidden sm:inline">Categories</span>
             </TabsTrigger>
             <TabsTrigger value="media" className="flex items-center gap-2">
               <Image className="h-4 w-4" />
@@ -77,10 +83,18 @@ const Admin = () => {
               <Mail className="h-4 w-4" />
               <span className="hidden sm:inline">Subscribers</span>
             </TabsTrigger>
+            <TabsTrigger value="activity" className="flex items-center gap-2">
+              <Activity className="h-4 w-4" />
+              <span className="hidden sm:inline">Activity</span>
+            </TabsTrigger>
           </TabsList>
           
           <TabsContent value="posts" className="mt-0">
             <BlogPostList />
+          </TabsContent>
+
+          <TabsContent value="categories" className="mt-0">
+            <CategoryManager />
           </TabsContent>
 
           <TabsContent value="media" className="mt-0">
@@ -114,6 +128,10 @@ const Admin = () => {
           
           <TabsContent value="subscribers" className="mt-0">
             <NewsletterSubscribers />
+          </TabsContent>
+
+          <TabsContent value="activity" className="mt-0">
+            <ActivityLogs />
           </TabsContent>
         </Tabs>
       </main>
