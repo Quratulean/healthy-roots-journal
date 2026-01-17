@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import DOMPurify from "dompurify";
+import { useDisclaimer } from "@/hooks/useDisclaimer";
 
 interface BlogPostProps {
   title: string;
@@ -15,6 +16,9 @@ interface BlogPostProps {
 }
 
 const BlogPost = ({ title, category, author, date, readTime, image, content }: BlogPostProps) => {
+  // Fetch the active medical disclaimer
+  const { data: disclaimer } = useDisclaimer("medical_disclaimer");
+
   return (
     <article className="max-w-4xl mx-auto">
       {/* Header */}
@@ -66,10 +70,26 @@ const BlogPost = ({ title, category, author, date, readTime, image, content }: B
         </Button>
       </div>
 
+      {/* Auto Medical Disclaimer - Top */}
+      {disclaimer && (
+        <div 
+          className="mb-8"
+          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(disclaimer.content) }} 
+        />
+      )}
+
       {/* Content */}
       <div className="prose prose-lg max-w-none mb-12">
         <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }} />
       </div>
+
+      {/* Auto Medical Disclaimer - Bottom */}
+      {disclaimer && (
+        <div 
+          className="mb-8"
+          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(disclaimer.content) }} 
+        />
+      )}
 
       <Separator className="my-12" />
 

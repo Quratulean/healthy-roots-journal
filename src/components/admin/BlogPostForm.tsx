@@ -20,6 +20,7 @@ import { z } from "zod";
 import { Save, Eye, ArrowLeft, Image as ImageIcon, Calendar, Search as SearchIcon, FileText } from "lucide-react";
 import RichTextEditor from "./RichTextEditor";
 import ImageUpload from "./ImageUpload";
+import RelatedPostsSuggestions from "./RelatedPostsSuggestions";
 
 type PostStatus = "draft" | "editor_review" | "scheduled" | "published";
 
@@ -559,6 +560,18 @@ const BlogPostForm = ({ postId, onBack, onSuccess }: BlogPostFormProps) => {
               </div>
             </CardContent>
           </Card>
+
+          {/* Internal Linking Helper */}
+          <RelatedPostsSuggestions
+            postId={postId}
+            selectedCategories={selectedCategories}
+            selectedTags={selectedTags}
+            onInsertLink={(title, slug) => {
+              const linkHtml = `<a href="/blog/${slug}">${title}</a>`;
+              setContent((prev) => prev + ` ${linkHtml}`);
+              toast.success(`Link to "${title}" added to content`);
+            }}
+          />
         </div>
       </form>
     </div>
