@@ -137,6 +137,59 @@ export type Database = {
         }
         Relationships: []
       }
+      content_quality_scores: {
+        Row: {
+          checked_at: string | null
+          created_at: string | null
+          has_disclaimer: boolean | null
+          has_reviewer: boolean | null
+          has_sources: boolean | null
+          id: string
+          issues: Json | null
+          overall_score: number | null
+          post_id: string | null
+          readability_score: number | null
+          seo_score: number | null
+          word_count: number | null
+        }
+        Insert: {
+          checked_at?: string | null
+          created_at?: string | null
+          has_disclaimer?: boolean | null
+          has_reviewer?: boolean | null
+          has_sources?: boolean | null
+          id?: string
+          issues?: Json | null
+          overall_score?: number | null
+          post_id?: string | null
+          readability_score?: number | null
+          seo_score?: number | null
+          word_count?: number | null
+        }
+        Update: {
+          checked_at?: string | null
+          created_at?: string | null
+          has_disclaimer?: boolean | null
+          has_reviewer?: boolean | null
+          has_sources?: boolean | null
+          id?: string
+          issues?: Json | null
+          overall_score?: number | null
+          post_id?: string | null
+          readability_score?: number | null
+          seo_score?: number | null
+          word_count?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "content_quality_scores_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: true
+            referencedRelation: "blog_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       disclaimers: {
         Row: {
           content: string
@@ -167,6 +220,45 @@ export type Database = {
         }
         Relationships: []
       }
+      internal_links: {
+        Row: {
+          anchor_text: string | null
+          created_at: string | null
+          id: string
+          source_post_id: string | null
+          target_post_id: string | null
+        }
+        Insert: {
+          anchor_text?: string | null
+          created_at?: string | null
+          id?: string
+          source_post_id?: string | null
+          target_post_id?: string | null
+        }
+        Update: {
+          anchor_text?: string | null
+          created_at?: string | null
+          id?: string
+          source_post_id?: string | null
+          target_post_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "internal_links_source_post_id_fkey"
+            columns: ["source_post_id"]
+            isOneToOne: false
+            referencedRelation: "blog_posts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "internal_links_target_post_id_fkey"
+            columns: ["target_post_id"]
+            isOneToOne: false
+            referencedRelation: "blog_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       medical_reviewers: {
         Row: {
           created_at: string | null
@@ -194,6 +286,27 @@ export type Database = {
           name?: string
           profile_image?: string | null
           specialization?: string | null
+        }
+        Relationships: []
+      }
+      newsletter_rate_limits: {
+        Row: {
+          attempts: number | null
+          first_attempt_at: string | null
+          ip_hash: string
+          last_attempt_at: string | null
+        }
+        Insert: {
+          attempts?: number | null
+          first_attempt_at?: string | null
+          ip_hash: string
+          last_attempt_at?: string | null
+        }
+        Update: {
+          attempts?: number | null
+          first_attempt_at?: string | null
+          ip_hash?: string
+          last_attempt_at?: string | null
         }
         Relationships: []
       }
@@ -408,7 +521,7 @@ export type Database = {
       }
     }
     Enums: {
-      app_role: "admin" | "user" | "editor"
+      app_role: "admin" | "user" | "editor" | "author"
       post_status: "draft" | "editor_review" | "scheduled" | "published"
     }
     CompositeTypes: {
@@ -537,7 +650,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      app_role: ["admin", "user", "editor"],
+      app_role: ["admin", "user", "editor", "author"],
       post_status: ["draft", "editor_review", "scheduled", "published"],
     },
   },
