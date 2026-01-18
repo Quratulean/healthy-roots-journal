@@ -21,6 +21,7 @@ import { Save, Eye, ArrowLeft, Image as ImageIcon, Calendar, Search as SearchIco
 import RichTextEditor from "./RichTextEditor";
 import ImageUpload from "./ImageUpload";
 import RelatedPostsSuggestions from "./RelatedPostsSuggestions";
+import ContentQualityChecker from "./ContentQualityChecker";
 
 type PostStatus = "draft" | "editor_review" | "scheduled" | "published";
 
@@ -560,6 +561,16 @@ const BlogPostForm = ({ postId, onBack, onSuccess }: BlogPostFormProps) => {
               </div>
             </CardContent>
           </Card>
+
+          {/* Content Quality Checker */}
+          <ContentQualityChecker
+            content={content}
+            title={title}
+            excerpt={excerpt}
+            seoTitle={seoTitle}
+            seoDescription={seoDescription}
+            postId={postId}
+          />
 
           {/* Internal Linking Helper */}
           <RelatedPostsSuggestions

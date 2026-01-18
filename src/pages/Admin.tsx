@@ -12,7 +12,8 @@ import CategoryManager from "@/components/admin/CategoryManager";
 import NewsletterSubscribers from "@/components/admin/NewsletterSubscribers";
 import MediaLibrary from "@/components/admin/MediaLibrary";
 import ActivityLogs from "@/components/admin/ActivityLogs";
-import { LogOut, LayoutDashboard, FileText, Tags, Mail, Image, FolderTree, Activity } from "lucide-react";
+import DisclaimerManager from "@/components/admin/DisclaimerManager";
+import { LogOut, LayoutDashboard, FileText, Tags, Mail, Image, FolderTree, Activity, Shield } from "lucide-react";
 
 const Admin = () => {
   const { user, loading, isAdmin, signOut } = useAuth();
@@ -62,7 +63,7 @@ const Admin = () => {
 
         {/* Main Tabs */}
         <Tabs defaultValue="posts" className="w-full">
-          <TabsList className="grid w-full max-w-4xl grid-cols-6 mb-8">
+          <TabsList className="grid w-full max-w-5xl grid-cols-7 mb-8">
             <TabsTrigger value="posts" className="flex items-center gap-2">
               <FileText className="h-4 w-4" />
               <span className="hidden sm:inline">Posts</span>
@@ -78,6 +79,10 @@ const Admin = () => {
             <TabsTrigger value="tags" className="flex items-center gap-2">
               <Tags className="h-4 w-4" />
               <span className="hidden sm:inline">Tags</span>
+            </TabsTrigger>
+            <TabsTrigger value="disclaimers" className="flex items-center gap-2">
+              <Shield className="h-4 w-4" />
+              <span className="hidden sm:inline">Disclaimers</span>
             </TabsTrigger>
             <TabsTrigger value="subscribers" className="flex items-center gap-2">
               <Mail className="h-4 w-4" />
@@ -124,6 +129,10 @@ const Admin = () => {
           
           <TabsContent value="tags" className="mt-0">
             <TagManager />
+          </TabsContent>
+
+          <TabsContent value="disclaimers" className="mt-0">
+            <DisclaimerManager />
           </TabsContent>
           
           <TabsContent value="subscribers" className="mt-0">
